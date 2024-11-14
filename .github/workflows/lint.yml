@@ -1,0 +1,47 @@
+name: Lint
+
+on:
+  push:
+
+permissions:
+  id-token: write
+  contents: read
+
+# env:
+#   NPM_TOKEN: ${{ secrets.NPM_AUTOMATION_AUTH_TOKEN }}
+
+jobs:
+  lint-audit:
+    name: Lint & Audit
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Audit
+        run: |
+          output=$(yarn audit --groups dependencies --json | jq 'select(.type == "auditAdvisory" and .data.advisory.severity == "critical")') 
+          if [[ $output ]]; then echo $output; exit 1; fi
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+
+      - uses: actions/cache@v3
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install
+        id: install
+        run: yarn install --frozen-lockfile
+
+      - name: Lint
+        id: lint
+        run: |
+          yarn lint
+          yarn type-check

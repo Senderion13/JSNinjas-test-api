@@ -1,0 +1,157 @@
+{
+  "containerDefinitions": [
+    {
+      "name": "lotic-core-api-staging",
+      "image": "496510935362.dkr.ecr.us-east-1.amazonaws.com/lotic-core-api-staging:0.0.1",
+      "cpu": 0,
+      "portMappings": [
+        {
+          "name": "lotic-core-api-staging",
+          "containerPort": 80,
+          "hostPort": 80,
+          "protocol": "tcp",
+          "appProtocol": "http"
+        }
+      ],
+      "essential": true,
+      "environment": [],
+      "mountPoints": [],
+      "volumesFrom": [],
+      "secrets": [
+        {
+          "name": "AWS_ACCOUNT_ID",
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:496510935362:secret:staging/lotic-core/api-TSrat0:AWS_ACCOUNT_ID::"
+        },
+        {
+          "name": "AWS_ACCESS_KEY_ID",
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:496510935362:secret:staging/lotic-core/api-TSrat0:AWS_ACCESS_KEY_ID::"
+        },
+        {
+          "name": "AWS_SECRET_ACCESS_KEY",
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:496510935362:secret:staging/lotic-core/api-TSrat0:AWS_SECRET_ACCESS_KEY::"
+        },
+        {
+          "name": "AWS_S3_MOMENTS_BUCKET",
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:496510935362:secret:staging/lotic-core/api-TSrat0:AWS_S3_MOMENTS_BUCKET::"
+        },
+        {
+          "name": "AWS_S3_SHARED_IMAGES_BUCKET",
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:496510935362:secret:staging/lotic-core/api-TSrat0:AWS_S3_SHARED_IMAGES_BUCKET::"
+        },
+        {
+          "name": "AWS_S3_PUBLIC_ASSETS_BUCKET",
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:496510935362:secret:staging/lotic-core/api-TSrat0:AWS_S3_PUBLIC_ASSETS_BUCKET::"
+        },
+        {
+          "name": "TRANSACTIONAL_EMAIL_FROM",
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:496510935362:secret:staging/lotic-core/api-TSrat0:TRANSACTIONAL_EMAIL_FROM::"
+        },
+        {
+          "name": "SENDGRID_API_KEY",
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:496510935362:secret:staging/lotic-core/api-TSrat0:SENDGRID_API_KEY::"
+        },
+        {
+          "name": "ADMIN_EMAIL",
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:496510935362:secret:staging/lotic-core/api-TSrat0:ADMIN_EMAIL::"
+        },
+        {
+          "name": "REDIS_URL",
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:496510935362:secret:staging/lotic-core/api-TSrat0:REDIS_URL::"
+        },
+        {
+          "name": "INSIGHTS_HOST",
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:496510935362:secret:staging/lotic-core/api-TSrat0:INSIGHTS_HOST::"
+        },
+        {
+          "name": "INSIGHTS_ACCOUNT_ID",
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:496510935362:secret:staging/lotic-core/api-TSrat0:INSIGHTS_ACCOUNT_ID::"
+        },
+        {
+          "name": "INSIGHTS_ACCOUNT_KEY",
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:496510935362:secret:staging/lotic-core/api-TSrat0:INSIGHTS_ACCOUNT_KEY::"
+        },
+        {
+          "name": "PORT",
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:496510935362:secret:staging/lotic-core/api-TSrat0:PORT::"
+        },
+        {
+          "name": "SENTRY_DSN",
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:496510935362:secret:staging/lotic-core/api-TSrat0:SENTRY_DSN::"
+        },
+        {
+          "name": "SENTRY_AUTH_TOKEN",
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:496510935362:secret:staging/lotic-core/api-TSrat0:SENTRY_AUTH_TOKEN::"
+        },
+        {
+          "name": "SENTRY_ORG",
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:496510935362:secret:staging/lotic-core/api-TSrat0:SENTRY_ORG::"
+        },
+        {
+          "name": "SENTRY_PROJECT",
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:496510935362:secret:staging/lotic-core/api-TSrat0:SENTRY_PROJECT::"
+        },
+        {
+          "name": "AWS_CLOUDFRONT_ORIGIN",
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:496510935362:secret:staging/lotic-core/api-TSrat0:AWS_CLOUDFRONT_ORIGIN::"
+        },
+        {
+          "name": "AWS_MEDIA_CONVERT_ENDPOINT",
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:496510935362:secret:staging/lotic-core/api-TSrat0:AWS_MEDIA_CONVERT_ENDPOINT::"
+        },
+        {
+          "name": "AWS_MEDIA_CONVERT_ACCESS_ROLE",
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:496510935362:secret:staging/lotic-core/api-TSrat0:AWS_MEDIA_CONVERT_ACCESS_ROLE::"
+        },
+        {
+          "name": "DATABASE_URL",
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:496510935362:secret:staging/lotic-core/api-TSrat0:DATABASE_URL::"
+        },
+        {
+          "name": "IS_LOCAL",
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:496510935362:secret:staging/lotic-core/api-TSrat0:IS_LOCAL::"
+        },
+        {
+          "name": "DB_LOGGING",
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:496510935362:secret:staging/lotic-core/api-TSrat0:DB_LOGGING::"
+        },
+        {
+          "name": "MOMENT_SUBMISSION_VARIANT_AUTO_GENERATION_ENABLED",
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:496510935362:secret:staging/lotic-core/api-TSrat0:MOMENT_SUBMISSION_VARIANT_AUTO_GENERATION_ENABLED::"
+        },
+        {
+          "name": "MIXPANEL_PROJECT_TOKEN",
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:496510935362:secret:staging/lotic-core/api-TSrat0:MIXPANEL_PROJECT_TOKEN::"
+        },
+        {
+          "name": "LOG_LEVEL",
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:496510935362:secret:staging/lotic-core/api-TSrat0:LOG_LEVEL::"
+        },
+        {
+          "name": "NO_COLOR",
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:496510935362:secret:staging/lotic-core/api-TSrat0:NO_COLOR::"
+        }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-create-group": "true",
+          "awslogs-group": "/ecs/lotic-core-api/staging",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
+    }
+  ],
+  "family": "lotic-core-api-task-staging",
+  "taskRoleArn": "arn:aws:iam::496510935362:role/ecsTaskRole",
+  "executionRoleArn": "arn:aws:iam::496510935362:role/ecsTaskExecutionRole",
+  "networkMode": "awsvpc",
+  "volumes": [],
+  "placementConstraints": [],
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "1024",
+  "memory": "4096",
+  "runtimePlatform": {
+    "operatingSystemFamily": "LINUX"
+  }
+}

@@ -1,0 +1,24 @@
+name: Build & Push API (Staging)
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+    
+permissions:
+  id-token: write
+  contents: write
+
+jobs:  
+  deploy-to-staging:  
+    uses: Lotic-ai/devops/.github/workflows/deploy-to-ecs.yml@v1.0.262
+    with:      
+      environment: staging
+    secrets:
+      lotic-app-id: ${{ secrets.LOTIC_APP_ID }}
+      lotic-app-private-key: ${{ secrets.LOTIC_APP_PRIVATE_KEY }}
+      npm-auth-token: ${{ secrets.NPM_AUTH_TOKEN }}
+      sentry-auth-token: ${{ secrets.SENTRY_AUTH_TOKEN }}
+      slack-bot-token: ${{ secrets.SLACK_BOT_TOKEN }}
+

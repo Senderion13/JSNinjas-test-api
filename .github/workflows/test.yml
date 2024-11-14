@@ -1,0 +1,73 @@
+name: Integration Tests
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    env:
+      DATABASE_NAME: core_api_test
+      DATABASE_USER: root
+      DATABASE_PASSWORD: root
+      TEST_DATABASE_URL: postgres://root:root@localhost:5432/core_api_test
+      # NPM_TOKEN: ${{ secrets.NPM_AUTOMATION_AUTH_TOKEN }}
+      DB_SSL: false
+      REDIS_URL: redis://localhost:6379
+      AWS_CLOUDFRONT_ORIGIN: placeholder
+
+    services:
+      postgres:
+        image: postgres:17.0
+        env:
+          POSTGRES_DB: ${{ env.DATABASE_NAME }}
+          POSTGRES_USER: ${{ env.DATABASE_USER }}
+          POSTGRES_PASSWORD: ${{ env.DATABASE_PASSWORD }}
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+      redis:
+        image: redis:7.4.0
+        # Set health checks to wait until redis has started
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          # Maps port 6379 on service container to the host
+          - 6379:6379
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.18.0
+
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
+
+      - name: Wait for database to be ready
+        run: |
+          echo "Waiting for PostgreSQL to start..."
+          startTime=$(date +%s)
+          timeout=600  # Adjust timeout as needed (in seconds)
+          while ! pg_isready -h localhost -p 5432 -U $DATABASE_USER; do
+            sleep 1
+            currentTime=$(date +%s)
+            elapsedTime=$((currentTime - startTime))
+            if [ $elapsedTime -ge $timeout ]; then
+              echo "Timeout reached while waiting for PostgreSQL."
+              exit 1
+            fi
+          done
+          echo "PostgreSQL is ready"
+
+      - name: Run tests
+        run: yarn test:integration

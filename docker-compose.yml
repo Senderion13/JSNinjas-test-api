@@ -1,0 +1,30 @@
+services:
+  superhero-api:
+    container_name: api
+    build:
+      context: ../core-api
+      target: dev
+    command: sh -c 'yarn && yarn start:dev'
+
+    ports:
+      - 4400:3000
+    volumes:
+      - ../core-api:/app
+      - /app/node_modules
+    depends_on:
+      - postgres
+
+  # Dependencies
+  postgres:
+    container_name: postgres-db
+    image: postgres:17.0
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: superhero
+    ports:
+      - 5432:5432
+    volumes:
+      - ../data/postgres:/var/lib/postgresql/data
+      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
