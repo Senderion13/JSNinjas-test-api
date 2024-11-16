@@ -1,6 +1,6 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
-import { Asset } from 'modules/asset/entities/asset.entity';
+import { SuperheroAssets } from '../../superheroAssets/entities/superheroAssets.entity';
 
 @Entity()
 export class Superhero {
@@ -22,6 +22,6 @@ export class Superhero {
   @Column({ type: 'varchar', length: 50 })
   catch_phrase: string;
 
-  @OneToMany(() => Asset, asset => asset.superhero)
-  assets: Asset[];
+  @OneToMany(() => SuperheroAssets, superhero_assets => superhero_assets.superhero)
+  superhero_assets: SuperheroAssets[];
 }

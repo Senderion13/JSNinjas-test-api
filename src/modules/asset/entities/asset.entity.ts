@@ -1,6 +1,6 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
-import { Superhero } from 'modules/superhero/entities/superhero.entity';
+import { SuperheroAssets } from 'modules/superheroAssets/entities/superheroAssets.entity';
 
 @Entity()
 export class Asset {
@@ -13,6 +13,6 @@ export class Asset {
   @Column({ type: 'varchar', length: 150 })
   description: string;
 
-  @ManyToOne(() => Superhero, superhero => superhero.assets)
-  superhero: Superhero;
+  @OneToMany(() => SuperheroAssets, superheroAssets => superheroAssets.superhero)
+  superheroAssets: SuperheroAssets[];
 }

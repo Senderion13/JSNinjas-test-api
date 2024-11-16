@@ -2,14 +2,14 @@ services:
   superhero-api:
     container_name: api
     build:
-      context: ../core-api
+      context: ../api
       target: dev
     command: sh -c 'yarn && yarn start:dev'
 
     ports:
       - 4400:3000
     volumes:
-      - ../core-api:/app
+      - ../api:/app
       - /app/node_modules
     depends_on:
       - postgres

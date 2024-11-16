@@ -24,13 +24,20 @@ export class SuperheroService {
     return this.superheroRepository.save(superhero);
   }
 
-  findAllSuperhero(page = 1, limit = 5): Promise<Superhero[]> {
+  findAllSuperhero(page = 1, limit = 5): Promise<[Superhero[], number]> {
     const offset = (page - 1) * limit;
-    return this.superheroRepository.find({ skip: offset, take: limit, relations: { assets: true } });
+    return this.superheroRepository.findAndCount({
+      skip: offset,
+      take: limit,
+      relations: { superhero_assets: { asset: true } },
+    });
   }
 
   findSuperhero(id: number): Promise<Superhero | null> {
-    return this.superheroRepository.findOne({ where: { id }, relations: { assets: true } });
+    return this.superheroRepository.findOne({
+      where: { id },
+      relations: { superhero_assets: { asset: true } },
+    });
   }
 
   updateSuperhero(id: number, updateSuperheroDto: UpdateSuperheroDto): Promise<Superhero> {

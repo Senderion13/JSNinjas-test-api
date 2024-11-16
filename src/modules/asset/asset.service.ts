@@ -12,8 +12,9 @@ export class AssetService {
     @InjectRepository(Asset)
     private readonly assetRepository: Repository<Asset>,
   ) {}
-  findAll(): Promise<Asset[]> {
-    return this.assetRepository.find();
+  findAll(page = 1, limit = 5): Promise<Asset[]> {
+    const offset = (page - 1) * limit;
+    return this.assetRepository.find({ skip: offset, take: limit });
   }
   findOne(id: number): Promise<Asset | null> {
     return this.assetRepository.findOneBy({ id });
