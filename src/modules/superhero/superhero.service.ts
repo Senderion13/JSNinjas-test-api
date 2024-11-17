@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { DeleteResult, Repository } from 'typeorm';
 
 import { CreateSuperheroDto } from './dto/create-superhero';
 import { UpdateSuperheroDto } from './dto/update-superhero';
@@ -16,10 +16,10 @@ export class SuperheroService {
     const superhero: Superhero = new Superhero();
 
     superhero.nickname = createSuperheroDto.nickname;
-    superhero.real_name = createSuperheroDto.real_name;
-    superhero.origin_description = createSuperheroDto.origin_description;
+    superhero.realName = createSuperheroDto.realName;
+    superhero.originDescription = createSuperheroDto.originDescription;
     superhero.superpowers = createSuperheroDto.superpowers;
-    superhero.catch_phrase = createSuperheroDto.catch_phrase;
+    superhero.catchPhrase = createSuperheroDto.catchPhrase;
 
     return this.superheroRepository.save(superhero);
   }
@@ -29,14 +29,14 @@ export class SuperheroService {
     return this.superheroRepository.findAndCount({
       skip: offset,
       take: limit,
-      relations: { superhero_assets: { asset: true } },
+      relations: { superheroAssets: { asset: true } },
     });
   }
 
   findSuperhero(id: number): Promise<Superhero | null> {
     return this.superheroRepository.findOne({
       where: { id },
-      relations: { superhero_assets: { asset: true } },
+      relations: { superheroAssets: { asset: true } },
     });
   }
 
@@ -44,16 +44,16 @@ export class SuperheroService {
     const superhero: Superhero = new Superhero();
 
     superhero.nickname = updateSuperheroDto.nickname;
-    superhero.real_name = updateSuperheroDto.real_name;
-    superhero.origin_description = updateSuperheroDto.origin_description;
+    superhero.realName = updateSuperheroDto.realName;
+    superhero.originDescription = updateSuperheroDto.originDescription;
     superhero.superpowers = updateSuperheroDto.superpowers;
-    superhero.catch_phrase = updateSuperheroDto.catch_phrase;
+    superhero.catchPhrase = updateSuperheroDto.catchPhrase;
     superhero.id = id;
 
     return this.superheroRepository.save(superhero);
   }
 
-  removeSuperhero(id: number): Promise<{ affected?: number | null }> {
+  removeSuperhero(id: number): Promise<DeleteResult> {
     return this.superheroRepository.delete(id);
   }
 }

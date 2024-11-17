@@ -39,18 +39,18 @@ describe('AssetService', () => {
     assetRepositoryMock.save.mockResolvedValue(mockResult);
     const result = await assetService.createAsset(createAssetDto);
     expect(assetRepositoryMock.save).toHaveBeenCalledTimes(1);
-    expect(result).toBe(mockResult);
+    expect(result).toEqual(mockResult);
   });
   it('should update one', async () => {
     assetRepositoryMock.save.mockResolvedValue(mockResult);
     const result = await assetService.updateAsset(id, updateAssetDto);
     expect(assetRepositoryMock.save).toHaveBeenCalledTimes(1);
-    expect(result).toBe(mockResult);
+    expect(result).toEqual(mockResult);
   });
   it('should remove one', async () => {
     assetRepositoryMock.delete.mockResolvedValue(deleteResult);
     const result = await assetService.removeAsset(id);
     expect(assetRepositoryMock.delete).toHaveBeenCalledTimes(1);
-    expect(result).toBe(deleteResult);
+    expect(result).toEqual(deleteResult);
   });
 });

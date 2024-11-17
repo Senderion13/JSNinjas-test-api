@@ -6264,7 +6264,7 @@ superagent@^9.0.1:
     reflect-metadata "^0.2.2"
     rxjs "^7.8.1"
     serialize-error "^8.1.0"
-    superhero-api "file:../usr/local/share/.cache/yarn/v6/npm-superhero-api-0.0.1-76e67322-019f-4bf5-9245-c6a19913e318-1731858935014/node_modules/superhero-api"
+    superhero-api "file:C:/Users/serov.SENDERIONPC/AppData/Local/Yarn/Cache/v6/npm-superhero-api-0.0.1-b372d34e-0d3c-4ed0-8896-927eb34b7790-1731865306080/node_modules/superhero-api"
     typeorm "^0.3.20"
     winston "^3.15.0"
 
@@ -6605,6 +6605,11 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.npmjs.org/typedarray/-/typedarray-0.0.6.tgz"
   integrity sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==
+
+typeorm-naming-strategies@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/typeorm-naming-strategies/-/typeorm-naming-strategies-4.1.0.tgz#1ec6eb296c8d7b69bb06764d5b9083ff80e814a9"
+  integrity sha512-vPekJXzZOTZrdDvTl1YoM+w+sUIfQHG4kZTpbFYoTsufyv9NIBRe4Q+PdzhEAFA2std3D9LZHEb1EjE9zhRpiQ==
 
 typeorm@^0.3.20:
   version "0.3.20"

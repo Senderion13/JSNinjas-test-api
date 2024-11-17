@@ -6,5 +6,6 @@ export class CreateAssetDto {
   @IsNotEmpty()
   uri: string;
 
+  @IsString()
   description?: string;
 }

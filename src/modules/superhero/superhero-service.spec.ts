@@ -39,18 +39,18 @@ describe('superheroService', () => {
     superheroRepositoryMock.save.mockResolvedValue(mockResult);
     const result = await superheroService.createSuperhero(createSuperheroDto);
     expect(superheroRepositoryMock.save).toHaveBeenCalledTimes(1);
-    expect(result).toBe(mockResult);
+    expect(result).toEqual(mockResult);
   });
   it('should update one', async () => {
     superheroRepositoryMock.save.mockResolvedValue(mockResult);
     const result = await superheroService.updateSuperhero(id, updateSuperheroDto);
     expect(superheroRepositoryMock.save).toHaveBeenCalledTimes(1);
-    expect(result).toBe(mockResult);
+    expect(result).toEqual(mockResult);
   });
   it('should remove one', async () => {
     superheroRepositoryMock.delete.mockResolvedValue(deleteResult);
     const result = await superheroService.removeSuperhero(id);
     expect(superheroRepositoryMock.delete).toHaveBeenCalledTimes(1);
-    expect(result).toBe(deleteResult);
+    expect(result).toEqual(deleteResult);
   });
 });

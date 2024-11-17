@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { Environments } from '@constants';
 import * as dotenv from 'dotenv';
-import * as pg from 'pg';
 import { DataSource, DataSourceOptions } from 'typeorm';
+import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 
 dotenv.config();
 
@@ -14,14 +14,10 @@ const [dir, ext] = RegExp(/(src|dist)\/config\/data-source\.(js|ts)/i)
   .exec(__filename)
   ?.slice(1) ?? ['dist', 'js'];
 
-// Enable parse decimals to numbers. We have to be sure that our data won't run into precision issues
-pg.types.setTypeParser(1700, parseFloat);
-
-// apply TypeORM patch to upstream bug
-
 export const config: DataSourceOptions = {
   type: 'postgres',
   url,
+  namingStrategy: new SnakeNamingStrategy(),
   synchronize: false,
   entities: [`${dir}/**/*.entity.${ext}`],
   migrations: [`${dir}/modules/database/migrations/*.${ext}`],

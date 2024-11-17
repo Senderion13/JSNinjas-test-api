@@ -8,11 +8,11 @@ export class CreateSuperheroDto {
 
   @IsNotEmpty()
   @MinLength(2, { message: 'Name must have at least 2 characters.' })
-  real_name: string;
+  realName: string;
 
   @IsNotEmpty()
   @MinLength(2, { message: 'Description must have at least 2 characters.' })
-  origin_description: string;
+  originDescription: string;
 
   @IsNotEmpty()
   @MinLength(2, {
@@ -22,5 +22,5 @@ export class CreateSuperheroDto {
 
   @IsNotEmpty()
   @MinLength(2, { message: 'Phrase must have at least 2 characters.' })
-  catch_phrase: string;
+  catchPhrase: string;
 }

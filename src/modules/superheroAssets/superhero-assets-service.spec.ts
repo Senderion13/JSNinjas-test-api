@@ -3,8 +3,6 @@ import { Repository } from 'typeorm';
 
 import { deleteResult, id } from 'modules/__mocks__/shared';
 import { mockResult } from 'modules/__mocks__/superhero-assets';
-import { Asset } from 'modules/asset/entities/asset.entity';
-import { Superhero } from 'modules/superhero/entities/superhero.entity';
 
 import { CreateSuperheroAssetsDto } from './dto/create-superheroAssets';
 import { UpdateSuperheroAssetsDto } from './dto/update-superheroAssets';
@@ -41,18 +39,18 @@ describe('superheroService', () => {
     superheroAssetsRepositoryMock.save.mockResolvedValue(mockResult);
     const result = await superheroAssetsService.createSuperheroAssets(createSuperheroAssetsDto);
     expect(superheroAssetsRepositoryMock.save).toHaveBeenCalledTimes(1);
-    expect(result).toBe(mockResult);
+    expect(result).toEqual(mockResult);
   });
   it('should update one', async () => {
     superheroAssetsRepositoryMock.save.mockResolvedValue(mockResult);
     const result = await superheroAssetsService.updateSuperheroAssets(id, updateSuperheroAssetsDto);
     expect(superheroAssetsRepositoryMock.save).toHaveBeenCalledTimes(1);
-    expect(result).toBe(mockResult);
+    expect(result).toEqual(mockResult);
   });
   it('should remove one', async () => {
     superheroAssetsRepositoryMock.delete.mockResolvedValue(deleteResult);
     const result = await superheroAssetsService.removeSuperheroAssets(id);
     expect(superheroAssetsRepositoryMock.delete).toHaveBeenCalledTimes(1);
-    expect(result).toBe(deleteResult);
+    expect(result).toEqual(deleteResult);
   });
 });

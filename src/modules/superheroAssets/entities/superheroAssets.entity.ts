@@ -12,7 +12,7 @@ export class SuperheroAssets {
   @JoinColumn({ name: 'assetId' })
   asset: Asset;
 
-  @ManyToOne(() => Superhero, superhero => superhero.superhero_assets)
+  @ManyToOne(() => Superhero, superhero => superhero.superheroAssets)
   @JoinColumn({ name: 'superheroId' })
   superhero: Superhero;
 }

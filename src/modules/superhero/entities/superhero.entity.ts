@@ -11,17 +11,17 @@ export class Superhero {
   nickname: string;
 
   @Column({ type: 'varchar', length: 30 })
-  real_name: string;
+  realName: string;
 
   @Column({ type: 'varchar', length: 150 })
-  origin_description: string;
+  originDescription: string;
 
   @Column({ type: 'varchar', length: 100 })
   superpowers: string;
 
   @Column({ type: 'varchar', length: 50 })
-  catch_phrase: string;
+  catchPhrase: string;
 
-  @OneToMany(() => SuperheroAssets, superhero_assets => superhero_assets.superhero)
-  superhero_assets: SuperheroAssets[];
+  @OneToMany(() => SuperheroAssets, superheroAssets => superheroAssets.superhero)
+  superheroAssets: SuperheroAssets[];
 }

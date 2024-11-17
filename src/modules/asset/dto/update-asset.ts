@@ -6,5 +6,6 @@ export class UpdateAssetDto {
   @IsNotEmpty()
   uri: string;
 
+  @IsString()
   description?: string;
 }

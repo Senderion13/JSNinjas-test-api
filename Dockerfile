@@ -23,7 +23,6 @@ COPY \
 COPY src/ src/
 
 FROM dev AS build
-ARG NPM_TOKEN
 
 # install dependencies
 RUN yarn --frozen-lockfile
@@ -40,9 +39,6 @@ RUN yarn --frozen-lockfile --production --ignore-scripts --prefer-offline
 
 FROM node:18.13.0-alpine AS prod
 WORKDIR /app
-
-ARG GIT_COMMIT
-ENV GIT_COMMIT=${GIT_COMMIT}
 
 # copy production-relevant configuration files
 COPY package.json ./

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { DeleteResult, Repository } from 'typeorm';
 
 import { CreateAssetDto } from './dto/create-asset';
 import { UpdateAssetDto } from './dto/update-asset';
@@ -44,7 +44,7 @@ export class AssetService {
     return this.assetRepository.save(asset);
   }
 
-  removeAsset(id: number): Promise<{ affected?: number | null }> {
+  removeAsset(id: number): Promise<DeleteResult> {
     return this.assetRepository.delete(id);
   }
 }

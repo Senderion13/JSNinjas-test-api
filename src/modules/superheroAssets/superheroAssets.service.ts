@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { DeleteResult, Repository } from 'typeorm';
 
 import { CreateSuperheroAssetsDto } from './dto/create-superheroAssets';
 import { UpdateSuperheroAssetsDto } from './dto/update-superheroAssets';
@@ -40,7 +40,7 @@ export class SuperheroAssetsService {
     return this.superheroAssetsRepository.save(superheroAssets);
   }
 
-  removeSuperheroAssets(id: number): Promise<{ affected?: number | null }> {
+  removeSuperheroAssets(id: number): Promise<DeleteResult> {
     return this.superheroAssetsRepository.delete(id);
   }
 }
