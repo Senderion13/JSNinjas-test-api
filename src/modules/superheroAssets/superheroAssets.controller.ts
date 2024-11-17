@@ -30,7 +30,6 @@ export class SuperheroAssetsController {
 
   @Delete(':id')
   delete(@Param('id') id: string) {
-    console.log(id);
     return this.superheroAssetsService.removeSuperheroAssets(+id);
   }
 }

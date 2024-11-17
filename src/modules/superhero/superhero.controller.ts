@@ -30,7 +30,6 @@ export class SuperheroController {
 
   @Delete(':id')
   delete(@Param('id') id: string) {
-    console.log(id);
     return this.superheroService.removeSuperhero(+id);
   }
 }
