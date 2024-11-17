@@ -29,7 +29,7 @@ ARG NPM_TOKEN
 RUN yarn --frozen-lockfile
 
 # run unit tests
-RUN yarn test:unit
+RUN yarn test
 
 # build from source
 RUN yarn build

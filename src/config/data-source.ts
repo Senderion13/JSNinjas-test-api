@@ -22,7 +22,6 @@ pg.types.setTypeParser(1700, parseFloat);
 export const config: DataSourceOptions = {
   type: 'postgres',
   url,
-  ssl: process.env.NODE_ENV === Environments.PRODUCTION ? { rejectUnauthorized: false } : process.env.DB_SSL === 'true',
   synchronize: false,
   entities: [`${dir}/**/*.entity.${ext}`],
   migrations: [`${dir}/modules/database/migrations/*.${ext}`],

@@ -16,7 +16,6 @@ export class SuperheroAssetsService {
     const superheroAssets: SuperheroAssets = new SuperheroAssets();
     superheroAssets.asset = createSuperheroDto.asset;
     superheroAssets.superhero = createSuperheroDto.superhero;
-    console.log(superheroAssets);
     return this.superheroAssetsRepository.save(superheroAssets);
   }
 
