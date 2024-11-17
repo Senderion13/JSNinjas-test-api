@@ -21,6 +21,7 @@ after creation run these command(in terminal):
 yarn
 docker compose up
 ```
+Attention: if api can't connect to database just restart api (in Docker)
 
 open Docker Desktop or VS Code extension "Docker", open exec and run:
 
